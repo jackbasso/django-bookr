@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+      <h1>Book Detail</h1>
+      <hr>
+      <span class="text-info">Title: </span> <span>{{ book.title }}</span>
+      <br>
+      <span class="text-info">Publisher: </span><span>{{ book.publisher }}</span>
+      <br>
+      <span class="text-info">Publication Date: </span><span>{{ book.publication_date }}</span>
+      <br>
+      <span class="text-info">Rating: </span><span class="badge badge-primary badge-pill">{{ book_rating }}</span>
+      
+      <br>
+      {% if item.book_rating is null %}
+      <span class="text-secondary">Provide a rating and write the first review for this book.</span>
+      <br>
+      {% endif %}
+      <a class="btn btn-primary btn-sm active" role="button" aria-pressed="true" href="/book/{{ item.book.id }}/">Reviews</a></li>
+
+      <hr>
+      <h1>Review Comments</h1>
+
+      {% if not reviews %}
+      <h5>No review yet!</h5>
+      {% else %}
+      {% for review in reviews %}
+      <div>
+        <span class="text-info">Review Comment: </span> <span>{{ review.content }}</span>
+        <br>
+        <span class="text-info">Created on: </span><span>{{ review.date_created }}</span>
+        <br>
+        <span class="text-info">Modified on: </span><span>{{ review.date_edited }}</span>
+        <br>
+        <span class="text-info">Creator: </span><span>{{ review.creator }}</span>
+      </div>
+      {% endfor %}
+      {% endif %}
+{% endblock %}
